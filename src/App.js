@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from 'components/Layout';
 import BookList from 'components/BookList';
+import Layout from 'components/Layout';
 import Categories from 'components/Categories';
 
 function App() {
