@@ -1,13 +1,9 @@
 import React from 'react';
 
-function BookItem({
-  progress,
-  title,
-  category,
-  author,
-  currentChapter,
-  circleStyles,
-}) {
+function BookItem({ book }) {
+  const {
+    progress, title, category, author, currentChapter, circleStyles,
+  } = book;
   return (
     <div className="grid grid-cols-[50%_repeat(2,1fr)] my-4 p-6 bg-white shadow">
       <div className="flex flex-col">
@@ -31,9 +27,12 @@ function BookItem({
       <div className="flex items-center space-x-4">
         <div
           className={`${circleStyles} h-[4.25rem] w-[4.25rem] rounded-full`}
-        ></div>
+        />
         <div className="border-r pr-16">
-          <h3 className="text-[#121212] text-[2rem] ">{progress}%</h3>
+          <h3 className="text-[#121212] text-[2rem] ">
+            {progress}
+            %
+          </h3>
           <p className="text-[#121212]  text-sm opacity-50">Completed</p>
         </div>
       </div>
@@ -42,7 +41,10 @@ function BookItem({
           Current Chapter
         </p>
         <p className="text-[#121212] ">{currentChapter}</p>
-        <button className="bg-[#0290ff] rounded uppercase text-sm w-max font-light px-5 py-2 my-4 text-white tracking-wide">
+        <button
+          type="button"
+          className="bg-[#0290ff] rounded uppercase text-sm w-max font-light px-5 py-2 my-4 text-white tracking-wide"
+        >
           Update Progress
         </button>
       </div>

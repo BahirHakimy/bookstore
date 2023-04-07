@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { ImUser } from 'react-icons/im';
 
-function Layout(props) {
+function Layout() {
   return (
     <div className="h-screen bg-slate-100">
       <header className="flex items-center px-[6.25rem] py-7 gap-8 bg-white shadow">
@@ -13,12 +13,10 @@ function Layout(props) {
           <ul className="flex items-center gap-8">
             <li>
               <NavLink
-                to={'books'}
-                className={({ isActive }) =>
-                  `text-dark ${
-                    !isActive && 'opacity-50'
-                  } text-xs tracking-widest uppercase`
-                }
+                to="books"
+                className={({ isActive }) => `text-dark ${
+                  !isActive && 'opacity-50'
+                } text-xs tracking-widest uppercase`}
               >
                 Books
               </NavLink>
@@ -26,11 +24,9 @@ function Layout(props) {
             <li>
               <NavLink
                 to="categories"
-                className={({ isActive }) =>
-                  `text-dark ${
-                    !isActive && 'opacity-50'
-                  } text-xs tracking-widest uppercase`
-                }
+                className={({ isActive }) => `text-dark ${
+                  !isActive && 'opacity-50'
+                } text-xs tracking-widest uppercase`}
               >
                 Categories
               </NavLink>

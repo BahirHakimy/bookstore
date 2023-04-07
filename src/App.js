@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import BookItem from 'components/BookItem';
 import Layout from 'components/Layout';
 import 'styles/App.css';
 import BookList from 'components/BookList';
