@@ -9,9 +9,9 @@ function App() {
       path: '/',
       element: <Layout />,
       children: [
+        { path: '/', element: <BookList /> },
         { path: 'books', element: <BookList /> },
         { path: 'categories', element: <Categories /> },
-        { path: '/', element: <BookList /> },
       ],
     },
   ]);
