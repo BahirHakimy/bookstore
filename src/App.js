@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from 'components/Layout';
-import 'styles/App.css';
 import BookList from 'components/BookList';
 import Categories from 'components/Categories';
 
@@ -12,6 +11,7 @@ function App() {
       children: [
         { path: 'books', element: <BookList /> },
         { path: 'categories', element: <Categories /> },
+        { path: '/', element: <BookList /> },
       ],
     },
   ]);
