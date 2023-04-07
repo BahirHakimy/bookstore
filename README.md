@@ -129,11 +129,6 @@ npm run build
 - [<img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" width='20'/> Email](mailto:bahirhakimy2015@gmail.com)
 - [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/2491px-Twitter-logo.svg.png" width='20'/> Twitter](https://twitter.com/bahir_hakimy)
 
-👤 **Yoseph Addisu**
-
-- [GitHub](https://github.com/yosaddis)
-- [Twitter](https://twitter.com/yosaddis)
-- [LinkedIn](https://www.linkedin.com/in/yosaddis/)
 
 <p align="right"><a href="#readme-top">👆</a></p>
 
