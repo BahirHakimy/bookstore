@@ -1,8 +1,8 @@
 import React from 'react';
-import BookItem from './BookItem';
-import AddBook from './AddBook';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeBook } from 'redux/features/books/bookSlice';
+import BookItem from './BookItem';
+import AddBook from './AddBook';
 
 function BookList() {
   const { items } = useSelector((store) => store.books);

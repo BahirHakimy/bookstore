@@ -47,11 +47,10 @@ const bookSlice = createSlice({
           'bg-[radial-gradient(closest-side,_white_79%,_transparent_80%_100%),conic-gradient(#379cf6_64%,_#e8e8e8_0)]',
       });
     },
-    removeBook: (state, { payload }) => {
-      state.items = state.items.filter(
-        (item, index) => index !== payload.index
-      );
-    },
+    removeBook: (state, { payload }) => ({
+      ...state,
+      items: state.items.filter((item, index) => index !== payload.index),
+    }),
   },
 });
 

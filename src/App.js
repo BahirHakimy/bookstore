@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import BookList from 'components/BookList';
 import Layout from 'components/Layout';
 import Categories from 'components/Categories';
-import Counter from 'components/Counter';
 import { Provider } from 'react-redux';
 import store from 'redux/store';
 
