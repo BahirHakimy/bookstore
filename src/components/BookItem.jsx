@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BookItem({ book }) {
+function BookItem({ book, onRemove }) {
   const {
     progress, title, category, author, currentChapter, circleStyles,
   } = book;
@@ -15,13 +15,17 @@ function BookItem({ book }) {
         </h2>
         <span className="text-[#4386bf] text-sm font-light">{author}</span>
         <ul className="flex items-center justify-start my-4">
-          <li className="text-[#4386bf] text-sm font-light border-r pr-4 ">
+          <li className="text-[#4386bf] text-sm font-light cursor-pointer border-r pr-4 ">
             Comments
           </li>
-          <li className="text-[#4386bf] text-sm font-light border-r pr-4 ml-4">
-            Remove
+          <li className="text-[#4386bf] text-sm font-light cursor-pointer border-r pr-4 ml-4">
+            <button type="button" onClick={onRemove}>
+              Remove
+            </button>
           </li>
-          <li className="text-[#4386bf] text-sm font-light ml-4">Edit</li>
+          <li className="text-[#4386bf] text-sm font-light cursor-pointer ml-4">
+            Edit
+          </li>
         </ul>
       </div>
       <div className="flex items-center space-x-4">
