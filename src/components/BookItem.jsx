@@ -1,9 +1,8 @@
 import React from 'react';
 
-function BookItem({ book }) {
-  const {
-    progress, title, category, author, currentChapter, circleStyles,
-  } = book;
+function BookItem({ book, onRemove }) {
+  const { progress, title, category, author, currentChapter, circleStyles } =
+    book;
   return (
     <div className="grid grid-cols-[50%_repeat(2,1fr)] my-4 p-6 bg-white shadow">
       <div className="flex flex-col">
@@ -15,13 +14,18 @@ function BookItem({ book }) {
         </h2>
         <span className="text-[#4386bf] text-sm font-light">{author}</span>
         <ul className="flex items-center justify-start my-4">
-          <li className="text-[#4386bf] text-sm font-light border-r pr-4 ">
+          <li className="text-[#4386bf] text-sm font-light cursor-pointer border-r pr-4 ">
             Comments
           </li>
-          <li className="text-[#4386bf] text-sm font-light border-r pr-4 ml-4">
+          <li
+            className="text-[#4386bf] text-sm font-light cursor-pointer border-r pr-4 ml-4"
+            onClick={onRemove}
+          >
             Remove
           </li>
-          <li className="text-[#4386bf] text-sm font-light ml-4">Edit</li>
+          <li className="text-[#4386bf] text-sm font-light cursor-pointer ml-4">
+            Edit
+          </li>
         </ul>
       </div>
       <div className="flex items-center space-x-4">
@@ -29,10 +33,7 @@ function BookItem({ book }) {
           className={`${circleStyles} h-[4.25rem] w-[4.25rem] rounded-full`}
         />
         <div className="border-r pr-16">
-          <h3 className="text-[#121212] text-[2rem] ">
-            {progress}
-            %
-          </h3>
+          <h3 className="text-[#121212] text-[2rem] ">{progress}%</h3>
           <p className="text-[#121212]  text-sm opacity-50">Completed</p>
         </div>
       </div>
