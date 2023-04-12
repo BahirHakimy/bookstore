@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 function BookItem({ book, onRemove }) {
   const dispatch = useDispatch();
 
-  const { progress, title, category, author, currentChapter, circleStyles } =
-    book;
+  const {
+    progress, title, category, author, currentChapter, circleStyles,
+  } = book;
 
   return (
     <div className="grid grid-cols-[50%_repeat(2,1fr)] my-4 p-6 bg-white shadow">
@@ -42,7 +43,10 @@ function BookItem({ book, onRemove }) {
           className={`${circleStyles} h-[4.25rem] w-[4.25rem] rounded-full`}
         />
         <div className="border-r pr-16">
-          <h3 className="text-[#121212] text-[2rem] ">{progress}%</h3>
+          <h3 className="text-[#121212] text-[2rem] ">
+            {progress}
+            %
+          </h3>
           <p className="text-[#121212]  text-sm opacity-50">Completed</p>
         </div>
       </div>
