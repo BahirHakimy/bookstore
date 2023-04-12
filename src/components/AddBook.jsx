@@ -4,12 +4,12 @@ import { addBook } from 'redux/features/books/bookSlice';
 
 function AddBook() {
   const dispatch = useDispatch();
+  const [newBook, setNewBook] = React.useState({ title: '', author: '' });
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    const { title, author } = ev.target;
-    dispatch(addBook({ title: title.value, author: author.value }));
-    ev.target.reset();
+    dispatch(addBook(newBook));
+    setNewBook({ title: '', author: '' });
   };
 
   return (
@@ -22,9 +22,11 @@ function AddBook() {
         onSubmit={handleSubmit}
       >
         <input
+          name="title"
           type="text"
           required
-          name="title"
+          value={newBook.title}
+          onChange={(ev) => setNewBook({ ...newBook, title: ev.target.value })}
           id="title"
           placeholder="Book title"
           className="bg-white border text-slate-400 px-4 py-2 w-[40rem] border-[#e8e8e8] outline-none text-sm"
@@ -33,6 +35,8 @@ function AddBook() {
           name="author"
           type="text"
           required
+          value={newBook.author}
+          onChange={(ev) => setNewBook({ ...newBook, author: ev.target.value })}
           id="author"
           placeholder="Author"
           className="bg-white border text-slate-400 px-4 py-2 w-60 border-[#e8e8e8] text-sm"
