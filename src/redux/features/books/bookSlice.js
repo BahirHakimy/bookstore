@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   const response = await axios.get(
-    `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books`,
+    `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books`
   );
   return response.data;
 });
@@ -26,26 +26,26 @@ export const createBook = createAsyncThunk(
       };
       axios.post(
         `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books`,
-        book,
+        book
       );
       return book;
     } catch (error) {
       return error;
     }
-  },
+  }
 );
 export const deleteBook = createAsyncThunk(
   'books/deleteBook',
   async ({ itemID }) => {
     try {
       await axios.delete(
-        `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books/${itemID}`,
+        `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books/${itemID}`
       );
       return itemID;
     } catch (error) {
       return error;
     }
-  },
+  }
 );
 
 const createItem = ([itemID, data]) => {
@@ -114,7 +114,8 @@ const bookSlice = createSlice({
 
     builder.addCase(createBook.fulfilled, (state, { payload }) => {
       const updatedLoading = [...state.loading]; // Create a copy of the loading array
-      toast.dismiss(updatedLoading.pop());
+      const toastId = updatedLoading.pop();
+      setTimeout(() => toast.dismiss(toastId), 1000);
       return {
         ...state,
         loading: updatedLoading,
@@ -138,9 +139,10 @@ const bookSlice = createSlice({
 
     builder.addCase(deleteBook.fulfilled, (state, { payload }) => {
       const updatedLoading = [...state.loading]; // Create a copy of the loading array
-      toast.dismiss(updatedLoading.pop());
+      const toastId = updatedLoading.pop();
+      setTimeout(() => toast.dismiss(toastId), 1000);
       const updatedItems = state.items.filter(
-        (item) => item.itemID !== payload,
+        (item) => item.itemID !== payload
       );
       return { ...state, loading: updatedLoading, items: updatedItems };
     });
