@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   items: [],
@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   const response = await axios.get(
-    `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books`
+    `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books`,
   );
   return response.data;
 });
@@ -26,32 +26,37 @@ export const createBook = createAsyncThunk(
       };
       axios.post(
         `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books`,
-        book
+        book,
       );
       return book;
     } catch (error) {
       return error;
     }
-  }
+  },
 );
 export const deleteBook = createAsyncThunk(
   'books/deleteBook',
-  async ({ item_id }) => {
-    await axios.delete(
-      `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books/${item_id}`
-    );
-    return item_id;
-  }
+  async ({ itemID }) => {
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/apps/${process.env.REACT_APP_API_ID}/books/${itemID}`,
+      );
+      return itemID;
+    } catch (error) {
+      return error;
+    }
+  },
 );
 
-const createItem = ([item_id, data]) => {
+const createItem = ([itemID, data]) => {
   const progress = Math.round(Math.random() * 100);
   return {
-    item_id,
+    itemID,
     ...data[0],
     progress,
     currentChapter: 'Introduction',
-    circleStyles: `bg-[radial-gradient(closest-side,_white_79%,_transparent_80%_100%),conic-gradient(#379cf6_67%,_#e8e8e8_0)]`,
+    circleStyles:
+      'bg-[radial-gradient(closest-side,_white_79%,_transparent_80%_100%),conic-gradient(#379cf6_67%,_#e8e8e8_0)]',
   };
 };
 
@@ -72,7 +77,7 @@ const bookSlice = createSlice({
     },
     removeBook: (state, { payload }) => ({
       ...state,
-      items: state.items.filter((item) => item.item_id !== payload.item_id),
+      items: state.items.filter((item) => item.itemID !== payload.itemID),
     }),
     filterBooks: (state, { payload }) => ({
       ...state,
@@ -110,14 +115,20 @@ const bookSlice = createSlice({
     builder.addCase(createBook.fulfilled, (state, { payload }) => {
       const updatedLoading = [...state.loading]; // Create a copy of the loading array
       toast.dismiss(updatedLoading.pop());
-
-      state.loading = updatedLoading;
-      state.items.push({
-        ...payload,
-        progress: Math.round(Math.random() * 100),
-        currentChapter: 'Introduction',
-        circleStyles: `bg-[radial-gradient(closest-side,_white_79%,_transparent_80%_100%),conic-gradient(#379cf6_67%,_#e8e8e8_0)]`,
-      });
+      return {
+        ...state,
+        loading: updatedLoading,
+        items: [
+          ...state.items,
+          {
+            ...payload,
+            progress: Math.round(Math.random() * 100),
+            currentChapter: 'Introduction',
+            circleStyles:
+              'bg-[radial-gradient(closest-side,_white_79%,_transparent_80%_100%),conic-gradient(#379cf6_67%,_#e8e8e8_0)]',
+          },
+        ],
+      };
     });
 
     builder.addCase(deleteBook.pending, (state) => {
@@ -128,8 +139,10 @@ const bookSlice = createSlice({
     builder.addCase(deleteBook.fulfilled, (state, { payload }) => {
       const updatedLoading = [...state.loading]; // Create a copy of the loading array
       toast.dismiss(updatedLoading.pop());
-      state.loading = updatedLoading;
-      state.items = state.items.filter((item) => item.item_id !== payload);
+      const updatedItems = state.items.filter(
+        (item) => item.itemID !== payload,
+      );
+      return { ...state, loading: updatedLoading, items: updatedItems };
     });
   },
 });

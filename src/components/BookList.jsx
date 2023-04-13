@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  deleteBook,
-  fetchBooks,
-  removeBook,
-} from 'redux/features/books/bookSlice';
+import { deleteBook, fetchBooks } from 'redux/features/books/bookSlice';
 import BookItem from './BookItem';
 import AddBook from './AddBook';
 
@@ -15,19 +11,18 @@ function BookList() {
 
   useEffect(() => {
     dispatch(fetchBooks());
-    console.log('dispat');
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col px-[6.25rem] pb-16 bg-slate-100">
-      {items.length > 0 &&
-        items.map((book) => (
+      {items.length > 0
+        && items.map((book) => (
           // Here I pass each book to a reusable components
           <BookItem
-            key={book.item_id}
+            key={book.itemID}
             book={book}
             // Here I use remove book action to remove a book with the given id
-            onRemove={() => dispatch(deleteBook({ item_id: book.item_id }))}
+            onRemove={() => dispatch(deleteBook({ itemID: book.itemID }))}
           />
         ))}
       <hr className="my-6" />
