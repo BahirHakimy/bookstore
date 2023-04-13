@@ -2,8 +2,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import BookList from 'components/BookList';
 import Layout from 'components/Layout';
 import Categories from 'components/Categories';
-import { Provider } from 'react-redux';
-import store from 'redux/store';
 
 function App() {
   const routes = createBrowserRouter([
@@ -17,11 +15,7 @@ function App() {
       ],
     },
   ]);
-  return (
-    <Provider store={store}>
-      <RouterProvider router={routes} />
-    </Provider>
-  );
+  return <RouterProvider router={routes} />;
 }
 
 export default App;

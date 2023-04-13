@@ -1,19 +1,29 @@
 import React from 'react';
+import { filterBooks } from 'redux/features/books/bookSlice';
+import { useDispatch } from 'react-redux';
 
 function BookItem({ book, onRemove }) {
+  const dispatch = useDispatch();
+
   const {
     progress, title, category, author, currentChapter, circleStyles,
   } = book;
+
   return (
     <div className="grid grid-cols-[50%_repeat(2,1fr)] my-4 p-6 bg-white shadow">
       <div className="flex flex-col">
         <p className="text-[#121212] text-sm opacity-50 font-bold">
-          {category}
+          <button
+            type="button"
+            onClick={() => dispatch(filterBooks({ category }))}
+          >
+            {category}
+          </button>
         </p>
         <h2 className="text-[#121212] tracking-tighter font-bold text-xl">
           {title}
         </h2>
-        <span className="text-[#4386bf] text-sm font-light">{author}</span>
+        <span className="text-[#181e24] text-sm font-light">{author}</span>
         <ul className="flex items-center justify-start my-4">
           <li className="text-[#4386bf] text-sm font-light cursor-pointer border-r pr-4 ">
             Comments
