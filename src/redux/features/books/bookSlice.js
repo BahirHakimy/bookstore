@@ -114,7 +114,8 @@ const bookSlice = createSlice({
 
     builder.addCase(createBook.fulfilled, (state, { payload }) => {
       const updatedLoading = [...state.loading]; // Create a copy of the loading array
-      toast.dismiss(updatedLoading.pop());
+      const toastId = updatedLoading.pop();
+      setTimeout(() => toast.dismiss(toastId), 1000);
       return {
         ...state,
         loading: updatedLoading,
@@ -138,7 +139,8 @@ const bookSlice = createSlice({
 
     builder.addCase(deleteBook.fulfilled, (state, { payload }) => {
       const updatedLoading = [...state.loading]; // Create a copy of the loading array
-      toast.dismiss(updatedLoading.pop());
+      const toastId = updatedLoading.pop();
+      setTimeout(() => toast.dismiss(toastId), 1000);
       const updatedItems = state.items.filter(
         (item) => item.itemID !== payload,
       );
