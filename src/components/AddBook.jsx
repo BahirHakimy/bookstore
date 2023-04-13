@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from 'redux/features/books/bookSlice';
+import { createBook } from 'redux/features/books/bookSlice';
 
 function AddBook() {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ function AddBook() {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    dispatch(addBook(newBook));
+    dispatch(createBook(newBook));
     setNewBook({ title: '', author: '' });
   };
 
