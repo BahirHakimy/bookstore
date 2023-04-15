@@ -58,8 +58,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Clean Design**
-- **Responsive**
+- **Beautiful UI**
 
 <p align="right"><a href="#readme-top">👆</a></p>
 
